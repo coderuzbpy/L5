@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ car.make }} {{ car.model }}</title>
+    <title>{{ phone.make }} {{ phone.model }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,14 +21,14 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
-        .car-img {
+        .phone-img {
             width: 100%;
             border-radius: 10px;
             height: auto;
             max-height: 400px;
             object-fit: cover;
         }
-        .car-title {
+        .phone-title {
             text-align: center;
             font-size: 28px;
             margin: 10px 0;
@@ -77,34 +77,34 @@
 <body>
 
 <div class="container">
-      {% if car.image %}
-    <img src="{{ car.image.url }}" class="car-img"
+      {% if phone.image %}
+    <img src="{{ phone.image.url }}" class="phone-img"
          onerror="this.onerror=null; this.src='https://via.placeholder.com/800x400?text=No+Image';">
     {% else %}
-        <img src="media/default.png" class="car-img">
+        <img src="media/default.png" class="phone-img">
     {% endif %}
 
 
 
-    <h1 class="car-title">{{ car.make }} {{ car.model }}</h1>
-    <p class="price">Narx: ${{ car.price }}</p>
+    <h1 class="phone-title">{{ phone.make }} {{ phone.model }}</h1>
+    <p class="price">Narx: ${{ phone.price }}</p>
 
     <div class="details">
         <h3>Texnik xususiyatlari:</h3>
-        <p><strong>Yili:</strong> {{ car.year }}</p>
-        <p><strong>Rang:</strong> {{ car.color }}</p>
-        <p><strong>Yoqilg‘i turi:</strong> {{ car.fuel_type }}</p>
-        <p><strong>Transmissiya:</strong> {{ car.transmission }}</p>
-        <p><strong>Yurgan masofasi:</strong> {{ car.mileage|default:"Noma’lum" }} km</p>
-        <p><strong>Oxirgi yangilanish:</strong> {{ car.updated_at|date:"d-m-Y H:i" }}</p>
+        <p><strong>Yili:</strong> {{ phone.year }}</p>
+        <p><strong>Rang:</strong> {{ phone.color }}</p>
+        <p><strong>Yoqilg‘i turi:</strong> {{ phone.fuel_type }}</p>
+        <p><strong>Transmissiya:</strong> {{ phone.transmission }}</p>
+        <p><strong>Yurgan masofasi:</strong> {{ phone.mileage|default:"Noma’lum" }} km</p>
+        <p><strong>Oxirgi yangilanish:</strong> {{ phone.updated_at|date:"d-m-Y H:i" }}</p>
     </div>
 
     <div class="description">
         <h3>Qo‘shimcha ma’lumot:</h3>
-        <p>{{ car.description }}</p>
+        <p>{{ phone.description }}</p>
     </div>
 
-    <a href="{% url 'cars-list' %}" class="back-btn">⬅️ Orqaga</a>
+    <a href="{% url 'phones-list' %}" class="back-btn">⬅️ Orqaga</a>
 </div>
 
 </body>

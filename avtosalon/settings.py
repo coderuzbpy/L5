@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cars',
+    'phones',
     'users',
     'orders'
 ]
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'avtosalon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lesson4',
+        'NAME': 'lesson5',
         'USER': 'postgres',
-        'PASSWORD': '3698',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '5432',
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avtosalon - Avtomobillar</title>
+    <title>Smart bozor - telefonlar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,13 +24,13 @@
             margin: auto;
             padding: 20px;
         }
-        .car-list {
+        .phone-list {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
-        .car {
+        .phone {
             background: white;
             padding: 15px;
             border-radius: 8px;
@@ -38,16 +38,16 @@
             width: 300px;
             text-align: center;
         }
-        .car img {
+        .phone img {
             width: 100%;
             height: auto;
             border-radius: 8px;
             cursor: pointer; /* Rasm ustiga bosish mumkinligini bildiradi */
         }
-        .car h3 {
+        .phone h3 {
             margin: 10px 0;
         }
-        .car p {
+        .phone p {
             font-size: 16px;
             color: #444;
         }
@@ -60,28 +60,37 @@
 <body>
 
 <header>
-    🚗 Avtosalon - Bizning Avtomobillar
+     Smart bozor - Bizning Smartfonlar
 </header>
 
 <div class="container">
-    <div class="car-list">
-        {% for car in cars %}
-        <div class="car">
-                {% if car.image %}
-            <a href="{% url 'car-detail' car.id %}">
+    <div class="phone-list">
+        {% for phone in phones %}
+        <div class="phone">
+                {% if phone.image %}
+            <a href="{% url 'phone-detail' phone.id %}">
 
-                <img src="{{ car.image.url }}">  </a>
+                <img src="{{ phone.image.url }}">  </a>
                 {% else %}
-            <a href="{% url 'car-detail' car.id %}">
+            <a href="{% url 'phone-detail' phone.id %}">
                 <img src="media/default.png">
                 {% endif %}
             </a>
-            <h3>Brand: {{ car.make }} | Model: {{ car.model }}</h3>
-            <p>Narx: ${{ car.price }}</p>
+            <h3>Brand: {{ phone.make }} | Model: {{ phone.model }}</h3>
+            <p>Narx: ${{ phone.price }}</p>
         </div>
         {% endfor %}
     </div>
 </div>
+{% if phones %}
+    <div class="phone-list">
+        {% for phone in phones %}
+            <!-- phone listing code -->
+        {% endfor %}
+    </div>
+{% else %}
+    <p style="text-align: center;">Hozircha Smartfonlar mavjud emas.</p>
+{% endif %}
 
 </body>
 </html>

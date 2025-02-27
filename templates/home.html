@@ -24,13 +24,13 @@
             margin: auto;
             padding: 20px;
         }
-        .car-list {
+        .phone-list {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
-        .car {
+        .phone {
             background: white;
             padding: 15px;
             border-radius: 8px;
@@ -38,12 +38,12 @@
             width: 300px;
             text-align: center;
         }
-        .car img {
+        .phone img {
             width: 100%;
             height: auto;
             border-radius: 8px;
         }
-        .car h3 {
+        .phone h3 {
             margin: 10px 0;
         }
         .contact {
@@ -62,8 +62,8 @@
 </header>
 
 <div class="container">
-    <h2>Bizning Avtomobillar</h2>
-    <div class="car-list">
+    <a href="{% url 'phone-list' %}">Bizning Avtomobillar</a>
+</div>
 <div class="contact">
     <h2>Biz bilan bog‘laning</h2>
     <p>Telefon: +998 90 123 45 67</p>
