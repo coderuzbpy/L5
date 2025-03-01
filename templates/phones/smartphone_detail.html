@@ -93,9 +93,7 @@
         <h3>Texnik xususiyatlari:</h3>
         <p><strong>Yili:</strong> {{ phone.year }}</p>
         <p><strong>Rang:</strong> {{ phone.color }}</p>
-        <p><strong>Yoqilg‘i turi:</strong> {{ phone.fuel_type }}</p>
         <p><strong>Transmissiya:</strong> {{ phone.transmission }}</p>
-        <p><strong>Yurgan masofasi:</strong> {{ phone.mileage|default:"Noma’lum" }} km</p>
         <p><strong>Oxirgi yangilanish:</strong> {{ phone.updated_at|date:"d-m-Y H:i" }}</p>
     </div>
 
@@ -104,7 +102,9 @@
         <p>{{ phone.description }}</p>
     </div>
 
-    <a href="{% url 'phones-list' %}" class="back-btn">⬅️ Orqaga</a>
+    <a href="{% url 'phone-list' %}" class="back-btn">⬅️ Orqaga</a>
+    <a href="{% url 'phone-update' phone.id %}" class="back-btn">⬅️ Update</a>
+    <a href="{% url 'phone-delete' phone.id %}" >⬅️ Delete</a>
 </div>
 
 </body>
