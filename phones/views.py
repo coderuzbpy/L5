@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Phones
-from .forms import ContactForm, PhoneForm
+from .forms import ContactForm, PhoneForm, UpdateForm, PhoneDeleteForm
+
+
 # Create your views here.
 
 def  home(request):
@@ -30,19 +32,30 @@ def phone_create_form(request):
     return render(request, 'phones/phone_create.html', {'form': form})
 
 
+# def phone_update(request, pk):
+#     phone = Phones.objects.get(id=pk)
+#     if request.method == 'POST':
+#         phone.make = request.POST.get('make', phone.make)
+#         phone.model = request.POST.get('model', phone.model)
+#         phone.year = request.POST.get('year', phone.year)
+#         phone.color = request.POST.get('color', phone.color)
+#         phone.price = request.POST.get('price', phone.price)
+#         phone.description = request.POST.get('description', phone.description)
+#         phone.image = request.FILES.get('image', phone.image)
+#         phone.save()
+#         return redirect('phone-detail', pk=pk)
+#     return render(request, 'phones/phone_update.html', {'phone': phone})
 def phone_update(request, pk):
-    phone = Phones.objects.get(id=pk)
+    phone = get_object_or_404(Phones, id=pk)
     if request.method == 'POST':
-        phone.make = request.POST.get('make', phone.make)
-        phone.model = request.POST.get('model', phone.model)
-        phone.year = request.POST.get('year', phone.year)
-        phone.color = request.POST.get('color', phone.color)
-        phone.price = request.POST.get('price', phone.price)
-        phone.description = request.POST.get('description', phone.description)
-        phone.image = request.FILES.get('image', phone.image)
-        phone.save()
-        return redirect('phone-detail', pk=pk)
-    return render(request, 'phones/phone_update.html', {'phone': phone})
+        form = PhoneForm(request.POST, request.FILES, instance=phone)
+        if form.is_valid():
+            form.save()
+            return redirect('phone-detail', pk=pk)
+    else:
+        form = PhoneForm(instance=phone)
+
+    return render(request, 'phones/phone_update.html', {'form': form, 'phone': phone})
 
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -51,12 +64,16 @@ from .models import Phones
 
 def phone_delete(request, pk):
     phone = get_object_or_404(Phones, id=pk)
+
     if request.method == 'POST':
-        phone.delete()
-        return redirect('phone-list')  # O'chirilgandan keyin ro'yxatga qaytadi
+        form = PhoneDeleteForm(request.POST)
+        if form.is_valid():
+            phone.delete()
+            return redirect('phone-list')  # O‘chirilgandan keyin telefonlar ro‘yxatiga qaytadi
+    else:
+        form = PhoneDeleteForm()
 
-    return render(request, 'phones/phone_delete.html', {'phone': phone})
-
+    return render(request, 'phones/phone_delete.html', {'form': form, 'phone': phone})
 
 def contact_form(request):
     form = ContactForm(request.POST)

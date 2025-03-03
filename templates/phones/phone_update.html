@@ -41,39 +41,19 @@
         <h2>Update Phone</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="mb-3">
-                <label class="form-label">Make</label>
-                <input type="text" name="make" value="{{ phone.make }}" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Model</label>
-                <input type="text" name="model" value="{{ phone.model }}" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Year</label>
-                <input type="number" name="year" value="{{ phone.year }}" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Color</label>
-                <input type="text" name="color" value="{{ phone.color }}" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Price</label>
-                <input type="number" name="price" value="{{ phone.price }}" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="3">{{ phone.description }}</textarea>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Current Image</label>
-                {% if phone.image %}
-                    <img src="{{ phone.image.url }}" alt="Car Image" class="current-image">
-                {% endif %}
-                <input type="file" name="image" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Update Phone</button>
+            {{ form.as_p }}
+            {% if form.errors %}
+                <div style="color: red;">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <p>{{ field }}: {{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <button type="submit">Update</button>
         </form>
+
     </div>
 </div>
 

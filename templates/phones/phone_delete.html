@@ -30,10 +30,12 @@
     <div class="delete-container">
         <h2>"{{ phone.make }} {{ phone.model }}" ni o‘chirishni xohlaysizmi?</h2>
         <p>Bu amalni bekor qilib bo‘lmaydi!</p>
-        <form method="post" action="{% url 'phone-delete' phone.pk %}">
+        <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Ha, o‘chirish</button>
-            <a href="{% url 'phone-detail' phone.pk %}" class="btn btn-secondary">Yo‘q, bekor qilish</a>
+            <p>Haqiqatan ham "{{ phone.make }} - {{ phone.model }}" telefonini o‘chirib tashlamoqchimisiz?</p>
+            {{ form.as_p }}
+            <button type="submit">Ha, o‘chirish</button>
+            <a href="{% url 'phone-list' %}">Yo‘q, bekor qilish</a>
         </form>
     </div>
 </div>

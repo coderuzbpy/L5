@@ -1,4 +1,6 @@
 from django import forms
+from pyexpat.errors import messages
+
 from .models import Phones
 
 
@@ -19,6 +21,28 @@ class ContactForm(forms.Form):
         if len(name) < 3:
             raise forms.ValidationError("Ismingizni togri kiriting")
         return name
+    #
+    # def clean_message(self):
+    #     message = self.cleaned_data['message']
+
+class UpdateForm(forms.ModelForm):
+    class Meta:
+        model = Phones
+        fields = '__all__'
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price and price > 20000:
+            raise forms.ValidationError("siz telefon narxini juda baland qo`ydingiz")
+        return price
+
+
+class PhoneDeleteForm(forms.Form):
+    confirm = forms.BooleanField(
+        required=True,
+        label="Tasdiqlash",
+        help_text="Telefonni o‘chirishni tasdiqlang"
+    )
 
 
 
